@@ -510,40 +510,18 @@ body {
 }
 
 /* =====================
-   AJUSTES FINALES CELULAR
-   (SOLO VISUAL)
+   FIX DEFINITIVO ☰ CELULAR
 ===================== */
 @media (max-width: 768px) {
 
-  /* Topbar: balance visual */
-  .topbar-inner {
-    padding: 10px 14px;
+  /* Mostrar hamburguesa del topbar */
+  .topbar .menu-btn {
+    display: flex !important;
   }
 
-  .order-btn {
-    padding: 7px 12px;
-    font-size: 0.7rem;
-  }
-
-  .topbar-logo {
-    width: 100px;
-  }
-
-  .menu-btn {
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Botón View Menu */
-  .hero .btn {
-    padding: 14px 26px;
-    font-size: 0.85rem;
-    border-radius: 30px;
-  }
-
-  /* Hero un poco más bajo */
-  .hero {
-    padding-top: 80px;
+  /* Ocultar SOLO flechas del menú */
+  .menu-viewer .menu-btn {
+    display: none !important;
   }
 }
 
