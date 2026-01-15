@@ -112,15 +112,12 @@ body {
 }
 
 @media (max-width: 768px) {
-  .order-btn {
-    padding: 8px 14px;
-    font-size: 0.75rem;
-  }
-
-  .topbar-logo {
-    width: 120px;
+  .lang-toggle,
+  .phone-btn {
+    display: none;
   }
 }
+
 
 @media (max-width: 480px) {
   .topbar-inner {
@@ -475,6 +472,42 @@ body {
   }
 }
 
+/* =====================
+   FIXES SOLO PARA CELULAR
+   (NO MUEVE ESTRUCTURA)
+===================== */
+@media (max-width: 768px) {
+
+  /* Ocultar idioma y teléfono */
+  .lang-toggle,
+  .phone-btn {
+    display: none;
+  }
+
+  /* Botón Place Order más compacto */
+  .order-btn {
+    padding: 7px 12px;
+    font-size: 0.7rem;
+    border-radius: 6px;
+  }
+
+  /* Logo un poco más pequeño */
+  .topbar-logo {
+    width: 105px;
+  }
+
+ 
+  .menu-btn span {
+    width: 20px;
+    height: 2px;
+  }
+
+  /* Botones del hero más pequeños */
+  .hero .btn {
+    padding: 12px 28px;
+    font-size: 0.8rem;
+  }
+}
 
 
 
@@ -577,3 +610,4 @@ body {
 :fullscreen .menu-back {
   display: none;
 }
+
