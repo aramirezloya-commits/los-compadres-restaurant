@@ -120,15 +120,29 @@ body {
 
 
 @media (max-width: 480px) {
+
   .topbar-inner {
-    grid-template-columns: 1fr auto;
-    gap: 10px;
+    padding: 10px 14px;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+
+  .order-btn {
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    border-radius: 999px;
+  }
+
+  .topbar-logo {
+    width: 110px;
   }
 
   .topbar-actions {
-    gap: 10px;
+    gap: 8px;
   }
+
 }
+
 
 
 /* =====================
