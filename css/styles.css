@@ -510,18 +510,18 @@ body {
 }
 
 /* =====================
-   FIX DEFINITIVO ☰ CELULAR
+   FIX HAMBURGUESA TOPBAR
 ===================== */
 @media (max-width: 768px) {
 
-  /* Mostrar hamburguesa del topbar */
-  .topbar .menu-btn {
-    display: flex !important;
+  /* FORZAR que el ☰ del topbar se vea */
+  .topbar-actions .menu-btn {
+    display: flex;
   }
 
-  /* Ocultar SOLO flechas del menú */
+  /* Seguir ocultando las flechas del menú */
   .menu-viewer .menu-btn {
-    display: none !important;
+    display: none;
   }
 }
 
