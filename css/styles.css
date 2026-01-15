@@ -472,20 +472,73 @@ body {
   }
 }
 
-/* =====================
-   FIX HAMBURGUESA TOPBAR
-===================== */
+/* ==========================
+   TOPBAR MOBILE LAYOUT
+========================== */
 @media (max-width: 768px) {
 
-  /* FORZAR que el ☰ del topbar se vea */
-  .topbar-actions .menu-btn {
-    display: flex;
+  .topbar {
+    position: relative;
+    height: 64px;
   }
 
-  /* Seguir ocultando las flechas del menú */
-  .menu-viewer .menu-btn {
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 14px;
+  }
+
+  /* ORDEN */
+  .order-btn {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* LOGO CENTRADO REAL */
+  .topbar-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 38px;
+  }
+
+  /* ACCIONES DERECHA */
+  .topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* OCULTAR IDIOMA EN MOBILE */
+  .lang-toggle {
     display: none;
   }
+
+  /* BOTON */
+  .menu-btn {
+    width: 32px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .menu-btn span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 2px;
+  }
+
 }
 
 
