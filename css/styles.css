@@ -606,7 +606,7 @@ body {
 ===================== */
 
 @media (max-width: 768px) {
-  .menu-btn {
+  .menu-viewer .menu-btn {
     display: none;
   }
 }
