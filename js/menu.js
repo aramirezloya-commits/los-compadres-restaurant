@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const menuImage = document.getElementById("menuImage");
-  const viewer = document.querySelector(".viewer"); // 👈 nuevo
+  const viewer = document.querySelector(".viewer");
   const prevBtn = document.querySelector(".prev");
   const nextBtn = document.querySelector(".next");
   const pageIndicator = document.getElementById("pageIndicator");
@@ -13,16 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const totalMenus = 10;
   let currentIndex = 1;
-  let didSwipe = false; // 👈 clave
+  let didSwipe = false;
 
   // =====================
-  // PRELOAD IMAGES (CACHE)
+  // PRELOAD IMAGES
   // =====================
   for (let i = 1; i <= totalMenus; i++) {
     const img = new Image();
     img.src = `assets/menu/menu${i}.jpg`;
   }
-
 
   // =====================
   // UPDATE IMAGE
@@ -58,16 +57,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // =====================
-  // SWIPE NORMAL (MENU)
+  // SWIPE NORMAL (1 DEDO)
   // =====================
   let startX = 0;
   let endX = 0;
 
   viewer.addEventListener("touchstart", (e) => {
+    if (e.touches.length > 1) return; // 👈 IGNORA PINCH
     startX = e.touches[0].clientX;
   }, { passive: true });
 
   viewer.addEventListener("touchend", (e) => {
+    if (e.changedTouches.length > 1) return; // 👈 IGNORA PINCH
     endX = e.changedTouches[0].clientX;
     handleSwipe();
   });
@@ -88,37 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => didSwipe = false, 200);
   }
 
-
   // =====================
-// TAP LEFT / RIGHT (MOBILE FRIENDLY)
-// =====================
-menuImage.addEventListener("click", (e) => {
-  if (didSwipe) return; // evita conflicto con swipe
-
-  const x = e.clientX;
-  const width = window.innerWidth;
-
-  // lado derecho → siguiente
-  if (x > width / 2 && currentIndex < totalMenus) {
-    currentIndex++;
-    updateImage();
-    return;
-  }
-
-  // lado izquierdo → anterior
-  if (x < width / 2 && currentIndex > 1) {
-    currentIndex--;
-    updateImage();
-    return;
-  }
-});
-
-
-  // =====================
-  // OPEN FULLSCREEN
+  // OPEN FULLSCREEN (TAP)
   // =====================
   menuImage.addEventListener("click", () => {
-    if (didSwipe) return; // 👈 evita bug
+    if (didSwipe) return;
     fullscreenImage.src = menuImage.src;
     fullscreenView.classList.add("active");
   });
@@ -131,16 +106,18 @@ menuImage.addEventListener("click", (e) => {
   });
 
   // =====================
-  // SWIPE EN FULLSCREEN
+  // SWIPE FULLSCREEN (1 DEDO)
   // =====================
   let fsStartX = 0;
   let fsEndX = 0;
 
   fullscreenImage.addEventListener("touchstart", (e) => {
+    if (e.touches.length > 1) return; // 👈 IGNORA PINCH
     fsStartX = e.touches[0].clientX;
   }, { passive: true });
 
   fullscreenImage.addEventListener("touchend", (e) => {
+    if (e.changedTouches.length > 1) return; // 👈 IGNORA PINCH
     fsEndX = e.changedTouches[0].clientX;
     handleFullscreenSwipe();
   });
@@ -156,9 +133,8 @@ menuImage.addEventListener("click", (e) => {
     updateImage();
   }
 
-
   // =====================
-  // ZOOM HINT TIMING
+  // ZOOM HINT
   // =====================
   if (zoomHint) {
     setTimeout(() => {
