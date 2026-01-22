@@ -1,84 +1,138 @@
-const totalPages = 10;
-const images = [];
+document.addEventListener("DOMContentLoaded", () => {
+  const menuImage = document.getElementById("menuImage");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+  const pageIndicator = document.getElementById("pageIndicator");
+  const swipeHint = document.querySelector(".swipe-hint");
 
-// =====================
-// PRECARGA DE IMÁGENES
-// =====================
-for (let i = 1; i <= totalPages; i++) {
-  const img = new Image();
-  img.src = `assets/menu/menu${i}.jpg`;
-  images.push(img.src);
-}
+  const fullscreenView = document.getElementById("fullscreenView");
+  const fullscreenImage = document.getElementById("fullscreenImage");
+  const closeFullscreen = document.getElementById("closeFullscreen");
+  const zoomHint = document.getElementById("zoomHint");
 
-let current = 0;
 
-const menuImage = document.getElementById('menuImage');
-const counter = document.getElementById('counter');
-const menuViewer = document.querySelector('.menu-viewer');
-const backBtn = document.querySelector('.menu-back');
+  const totalMenus = 10;
+  let currentIndex = 1;
 
-// INIT
-menuImage.src = images[0];
-counter.textContent = `1 / ${images.length}`;
+  // =====================
+  // UPDATE IMAGE
+  // =====================
+  function updateImage() {
+    const src = `assets/menu/menu${currentIndex}.jpg`;
+    menuImage.src = src;
 
-// =====================
-// NAVEGACIÓN PC
-// =====================
-document.getElementById('next').addEventListener('click', nextPage);
-document.getElementById('prev').addEventListener('click', prevPage);
+    if (fullscreenView.classList.contains("active")) {
+      fullscreenImage.src = src;
+    }
 
-function nextPage() {
-  current = (current + 1) % images.length;
-  updateMenu();
-}
-
-function prevPage() {
-  current = (current - 1 + images.length) % images.length;
-  updateMenu();
-}
-
-function updateMenu() {
-  menuImage.src = images[current];
-  counter.textContent = `${current + 1} / ${images.length}`;
-}
-
-// =====================
-// SWIPE MÓVIL
-// =====================
-let startX = 0;
-
-menuViewer.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-}, { passive: true });
-
-menuViewer.addEventListener('touchend', (e) => {
-  const endX = e.changedTouches[0].clientX;
-  const threshold = 50;
-
-  if (startX - endX > threshold) nextPage();
-  if (endX - startX > threshold) prevPage();
-});
-
-// =====================
-// FULLSCREEN
-// =====================
-document.addEventListener('click', () => {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().catch(() => {});
+    if (pageIndicator) {
+      pageIndicator.textContent = `${currentIndex} / ${totalMenus}`;
+    }
   }
-});
 
-// =====================
-// BACK BUTTON
-// =====================
-backBtn.addEventListener('click', (e) => {
-  e.preventDefault();
+  // =====================
+  // DESKTOP BUTTONS
+  // =====================
+  nextBtn?.addEventListener("click", () => {
+    if (currentIndex < totalMenus) {
+      currentIndex++;
+      updateImage();
+    }
+  });
 
-  if (document.fullscreenElement) {
-    document.exitFullscreen().then(() => {
-      window.location.href = 'index.html';
+  prevBtn?.addEventListener("click", () => {
+    if (currentIndex > 1) {
+      currentIndex--;
+      updateImage();
+    }
+  });
+
+  // =====================
+  // SWIPE NORMAL (MENU)
+  // =====================
+  let startX = 0;
+  let endX = 0;
+
+  menuImage.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  menuImage.addEventListener("touchend", (e) => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const distance = endX - startX;
+    if (Math.abs(distance) < 50) return;
+
+    if (distance < 0 && currentIndex < totalMenus) currentIndex++;
+    if (distance > 0 && currentIndex > 1) currentIndex--;
+
+    updateImage();
+    swipeHint && (swipeHint.style.display = "none");
+  }
+
+  // =====================
+  // OPEN FULLSCREEN
+  // =====================
+  menuImage.addEventListener("click", () => {
+    fullscreenImage.src = menuImage.src;
+    fullscreenView.classList.add("active");
+  });
+
+
+  // =====================
+  // CLOSE FULLSCREEN
+  // =====================
+  closeFullscreen.addEventListener("click", () => {
+    fullscreenView.classList.remove("active");
+  });
+
+
+  // =====================
+  // SWIPE EN FULLSCREEN
+  // =====================
+  let fsStartX = 0;
+  let fsEndX = 0;
+
+  fullscreenImage.addEventListener("touchstart", (e) => {
+    fsStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  fullscreenImage.addEventListener("touchend", (e) => {
+    fsEndX = e.changedTouches[0].clientX;
+    handleFullscreenSwipe();
+  });
+
+  function handleFullscreenSwipe() {
+    const distance = fsEndX - fsStartX;
+    if (Math.abs(distance) < 50) return;
+
+    if (distance < 0 && currentIndex < totalMenus) currentIndex++;
+    if (distance > 0 && currentIndex > 1) currentIndex--;
+
+    updateImage();
+  }
+
+  // =====================
+  // ZOOM HINT TIMING
+  // =====================
+  if (zoomHint) {
+    // desaparecer solo después de 3 segundos
+    setTimeout(() => {
+      zoomHint.classList.add("hide");
+    }, 2000);
+
+    // si el usuario toca la imagen, se oculta de inmediato
+    menuImage.addEventListener("click", () => {
+      zoomHint.classList.add("hide");
     });
-  } else {
-    window.location.href = 'index.html';
   }
+
+
+  // =====================
+  // INIT
+  // =====================
+  updateImage();
 });

@@ -1,0 +1,281 @@
+/* =====================
+   RESET
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =====================
+   BASE
+===================== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4efe8; /* cremita tipo papel */
+  color: #1f3f8b;            /* azul principal */
+  height: 100vh;
+  overflow: hidden;
+
+  /* textura sutil tipo papel */
+  background-image:
+    radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* =====================
+   BACK BUTTON
+===================== */
+.back-fab {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: #1f3f8b;
+  padding: 8px 16px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+}
+
+.back-fab:hover {
+  background: #17336f;
+  transform: translateY(-1px);
+}
+
+/* =====================
+   VIEWER
+===================== */
+.viewer {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 40px;
+}
+
+/* =====================
+   MENU IMAGE
+===================== */
+.menu-photo {
+  max-height: 90vh;
+  max-width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-photo img {
+  max-height: 90vh;
+  width: auto;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  transition: opacity 0.2s ease;
+}
+
+/* =====================
+   NAV BUTTONS
+===================== */
+.nav {
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: #1f3f8b;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.nav:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* =====================
+   MOBILE VERSION
+===================== */
+@media (max-width: 768px) {
+
+  body {
+    overflow: hidden;
+  }
+
+  /* Back button más discreto */
+  .back-fab {
+    top: 14px;
+    left: 14px;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+
+  /* Viewer ajustado */
+  .viewer {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  /* Imagen del menú */
+  .menu-photo {
+    max-width: 100%;
+    max-height: 90vh;
+  }
+
+  .menu-photo img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  }
+
+  /* Flechas más cómodas */
+  .nav {
+    font-size: 2.2rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* CONTENEDOR GENERAL */
+  .mobile-ui {
+    position: fixed;
+    bottom: 90px;
+    width: 100%;
+    pointer-events: none;
+    z-index: 30;
+  }
+
+  /* =====================
+     PAGE INDICATOR (ANCLADO)
+  ===================== */
+  .page-indicator {
+    position: absolute;
+    bottom: 44px;            /* 👈 SIEMPRE MISMO LUGAR */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #2f4f88;
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+
+  /* =====================
+     SWIPE HINT (INDEPENDIENTE)
+  ===================== */
+  .swipe-hint {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -25px);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #5f7fb0;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .swipe-hint.hidden {
+    opacity: 0;              /* desaparece SIN mover nada */
+  }
+
+  /* OCULTAR FLECHAS EN MOBILE */
+  .nav {
+    display: none;
+  }
+}
+
+.menu-photo {
+  position: relative;
+  display: block;        /* 🔴 NO flex */
+  width: 100%;
+}
+
+.menu-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.zoom-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  transition: opacity 0.4s ease;
+
+  font-size: 0.85rem;    /* más legible para 40–60 */
+  font-weight: 500;
+  color: #fff;
+
+  background: rgba(0, 0, 0, 0.55);
+  padding: 6px 14px;
+  border-radius: 18px;
+
+  pointer-events: none;
+  z-index: 3;
+}
+
+.zoom-hint.hide {
+  opacity: 0;
+}
+
+.back-fab {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .back-fab {
+    display: block;
+  }
+}
+
+
+
+
+/* FULLSCREEN MENU */
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.fullscreen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.fullscreen img {
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: contain;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}

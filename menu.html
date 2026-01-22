@@ -3,32 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu | Los Compadres</title>
+  <title>Menu</title>
 
-  <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/menu.css">
 </head>
-
-<body class="menu-body">
+<body>
 
   <!-- BACK BUTTON -->
-  <a href="index.html" class="menu-back">← Back</a>
+  <a href="index.html" class="back-fab">← Back</a>
 
-  <!-- MENU -->
-  <section class="menu-viewer">
+  <!-- MENU VIEWER -->
+  <main class="viewer">
 
-    <button class="menu-btn" id="prev">‹</button>
+    <button class="nav prev" aria-label="Previous menu">
+      &#10094;
+    </button>
 
-    <div class="menu-frame">
-      <img src="assets/menu/menu1.jpg" alt="Menu page" id="menuImage">
+    <figure class="menu-photo">
+      <!-- SOLO UNA IMAGEN -->
+      <img
+        id="menuImage"
+        src="assets/menu/menu1.jpg"
+        alt="Restaurant Menu"
+      >
+
+      <div class="zoom-hint" id="zoomHint">
+        Tap to zoom
+      </div>
+    </figure>
+
+    <div class="mobile-ui">
+      <div class="page-indicator" id="pageIndicator">
+        1 / 10
+      </div>
+
+      <div class="swipe-hint">
+        Swipe right for next page
+      </div>
     </div>
 
-    <button class="menu-btn" id="next">›</button>
+    <button class="nav next" aria-label="Next menu">
+      &#10095;
+    </button>
+  </main>
 
-  </section>
+  <!-- FULLSCREEN VIEW -->
+  <div id="fullscreenView" class="fullscreen">
+    <button id="closeFullscreen" class="close-btn">✕</button>
+    <img id="fullscreenImage" alt="Menu fullscreen"
 
-  <p class="menu-counter" id="counter">1 / 10</p>
-
+  <!-- JS -->
   <script src="js/menu.js"></script>
 </body>
 </html>

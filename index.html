@@ -9,49 +9,54 @@
 
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
 
 <!-- TOPBAR -->
-<header class="topbar">
-  <div class="topbar-inner">
+  <header class="topbar">
+    <div class="topbar-inner">
 
-    <!-- CTA -->
-    <a href="#order" class="order-btn">PLACE ORDER</a>
+      <!-- CTA -->
+      <a href="#order" class="order-btn" data-i18n="order-btn">
+        PLACE ORDER
+      </a>
 
-    <!-- LOGO -->
-    <img src="assets/logo.png" alt="Los Compadres Logo" class="topbar-logo">
+      <!-- LOGO -->
+      <img src="assets/logo.png" alt="Los Compadres Logo" class="topbar-logo">
 
-    <!-- ACTIONS -->
-    <div class="topbar-actions">
-      <button class="lang-toggle">ES | EN</button>
+      <!-- ACTIONS -->
+      <div class="topbar-actions">
+        <button class="lang-toggle" id="langToggle">EN</button>
 
-      <button class="menu-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+        <button class="menu-btn" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
-
-  </div>
-</header>
+  </header>
 
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="hero-content">
-      <h1>Authentic Mexican Food</h1>
-      <p>Traditional flavors made fresh every day in Texas</p>
+      <h1 data-i18n="hero_title">Authentic Mexican Food</h1>
+        <p data-i18n="hero_subtitle">
+          Traditional flavors made fresh every day in Texas
+        </p>
 
-      <div class="hero-buttons">
-        <a href="menu.html" class="btn primary">View Menu</a>
+        <a href="menu.html" class="btn primary" data-i18n="view_menu">
+          View Menu
+        </a>
       </div>
     </div>
   </section>
 
-   <!-- ORDEN SECCION -->
-  <section class="order">
+  <!-- ORDEN SECCION -->
+  <section class="order" id="order">
     <div class="order-card">
 
       <div class="order-image">
@@ -59,74 +64,120 @@
       </div>
 
       <div class="order-content">
-        <h2>Order Your Favorite Mexican Food</h2>
-        <p>Traditional flavors made fresh every day. Call us and we’ll have your order ready.</p>
+        <h2 data-i18n="order_title">
+          Order Your Favorite Mexican Food
+        </h2>
 
-        <a href="tel:13612990437" class="order-main-btn">
+        <p data-i18n="order_text">
+          Traditional flavors made fresh every day. Call us and we’ll have your order ready.
+        </p>
+
+        <a href="tel:13612990437"
+          class="order-main-btn"
+          data-i18n="order_cta">
           Call to Order
         </a>
       </div>
-
     </div>
   </section>
 
+
   <!-- DIRECCION SECCION -->
-<section class="directions">
-  <div class="directions-inner">
+  <section class="directions" id="directions">
+    <div class="directions-inner">
 
-    <div class="directions-content">
-      <h2>¿HOW TO GET HERE?</h2> 
-      <p>
-        Visit us at our Corpus Christi location.  
-        Click the map to open directions in Google Maps.
-      </p>
+      <div class="directions-content">
+        <h2 data-i18n="directions_title">
+          HOW TO GET HERE?
+        </h2> 
 
-      <a
-        href="https://www.google.com/maps?q=5937+McArdle+Rd,+Corpus+Christi,+TX+78412"
-        target="_blank"
-        class="directions-btn"
-      >
-        Open in Google Maps
-      </a>
+        <p data-i18n="directions_text">
+          Visit us at our Corpus Christi location.
+          Click the map to open directions in Google Maps.
+        </p>
+
+        <a
+          href="https://www.google.com/maps?q=5937+McArdle+Rd,+Corpus+Christi,+TX+78412"
+          target="_blank"
+          class="directions-btn"
+          data-i18n="directions_cta"
+        >
+          Open in Google Maps
+        </a>
+      </div>
+
+      <div class="directions-map">
+        <iframe
+          src="https://www.google.com/maps?q=5937+McArdle+Rd,+Corpus+Christi,+TX+78412&output=embed"
+          loading="lazy">
+        </iframe>
+      </div>
     </div>
+  </section>
 
-    <div class="directions-map">
-      <iframe
-        src="https://www.google.com/maps?q=5937+McArdle+Rd,+Corpus+Christi,+TX+78412&output=embed"
-        loading="lazy">
-      </iframe>
-    </div>
-
-  </div>
-</section>
 
 
   <!-- INFO -->
-<section class="info" id="info">
-  <div class="info-item">
-    <h3>Hours</h3>
-    <p>
-      Mon – Sat: 6AM – 9PM<br>
-      Sunday: 6AM – 3PM
-    </p>
-  </div>
+  <section class="info" id="info">
+    <div class="info-item">
+      <h3 data-i18n="hours_title">Hours</h3>
+      <p>
+        <span data-i18n="hours_week">Mon – Sat: 6AM – 9PM</span><br>
+        <span data-i18n="hours_sun">Sunday: 6AM – 3PM</span>
+      </p>
+    </div>
 
-  <div class="info-divider"></div>
+    <div class="info-divider"></div>
 
-  <div class="info-item">
-    <h3>Phone</h3>
-    <p>(361) 299-0437</p>
-  </div>
-</section>
+    <div class="info-item">
+      <h3 data-i18n="phone_title">Phone</h3>
+      <p>(361) 299-0437</p>
+    </div>
+  </section>
 
 
-
-  
 
   <!-- FOOTER -->
   <footer class="footer">
     © 2026 Los Compadres Mexican Restaurant. All rights reserved.
   </footer>
 
-</body>
+  <!-- MENU OVERLAY -->
+  <nav class="overlay-menu" id="overlayMenu">
+      <button class="menu-close" aria-label="Close menu">✕</button>
+
+      <ul>
+        <li>
+          <a href="#home" data-link>
+            <i data-lucide="home"></i>
+            <span data-i18n="home">Home</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="menu.html" data-link>
+            <i data-lucide="book-open"></i>
+            <span data-i18n="menu">Menu</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#order" data-link>
+            <i data-lucide="phone"></i>
+            <span data-i18n="order">Order</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#directions" data-link>
+            <i data-lucide="map-pin"></i>
+            <span data-i18n="find">Find Us</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <script src="js/menu-toggle.js"></script>
+    <script src="js/lenguage.js"></script>
+  </body>
 </html>
