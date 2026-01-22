@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const menuImage = document.getElementById("menuImage");
+  const viewer = document.querySelector(".viewer"); // 👈 nuevo
   const prevBtn = document.querySelector(".prev");
   const nextBtn = document.querySelector(".next");
   const pageIndicator = document.getElementById("pageIndicator");
@@ -10,9 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeFullscreen = document.getElementById("closeFullscreen");
   const zoomHint = document.getElementById("zoomHint");
 
-
   const totalMenus = 10;
   let currentIndex = 1;
+  let didSwipe = false; // 👈 clave
+
+  // =====================
+  // PRELOAD IMAGES (CACHE)
+  // =====================
+  for (let i = 1; i <= totalMenus; i++) {
+    const img = new Image();
+    img.src = `assets/menu/menu${i}.jpg`;
+  }
+
 
   // =====================
   // UPDATE IMAGE
@@ -53,34 +63,65 @@ document.addEventListener("DOMContentLoaded", () => {
   let startX = 0;
   let endX = 0;
 
-  menuImage.addEventListener("touchstart", (e) => {
+  viewer.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
   }, { passive: true });
 
-  menuImage.addEventListener("touchend", (e) => {
+  viewer.addEventListener("touchend", (e) => {
     endX = e.changedTouches[0].clientX;
     handleSwipe();
   });
 
   function handleSwipe() {
     const distance = endX - startX;
-    if (Math.abs(distance) < 50) return;
+    const threshold = window.innerWidth * 0.15;
+    if (Math.abs(distance) < threshold) return;
+
+    didSwipe = true;
 
     if (distance < 0 && currentIndex < totalMenus) currentIndex++;
     if (distance > 0 && currentIndex > 1) currentIndex--;
 
     updateImage();
     swipeHint && (swipeHint.style.display = "none");
+
+    setTimeout(() => didSwipe = false, 200);
   }
+
+
+  // =====================
+// TAP LEFT / RIGHT (MOBILE FRIENDLY)
+// =====================
+menuImage.addEventListener("click", (e) => {
+  if (didSwipe) return; // evita conflicto con swipe
+
+  const x = e.clientX;
+  const width = window.innerWidth;
+
+  // lado derecho → siguiente
+  if (x > width / 2 && currentIndex < totalMenus) {
+    currentIndex++;
+    updateImage();
+    return;
+  }
+
+  // lado izquierdo → anterior
+  if (x < width / 2 && currentIndex > 1) {
+    currentIndex--;
+    updateImage();
+    return;
+  }
+});
+
 
   // =====================
   // OPEN FULLSCREEN
   // =====================
   menuImage.addEventListener("click", () => {
+    if (didSwipe) return; // 👈 evita bug
     fullscreenImage.src = menuImage.src;
     fullscreenView.classList.add("active");
   });
-
 
   // =====================
   // CLOSE FULLSCREEN
@@ -88,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
   closeFullscreen.addEventListener("click", () => {
     fullscreenView.classList.remove("active");
   });
-
 
   // =====================
   // SWIPE EN FULLSCREEN
@@ -107,7 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handleFullscreenSwipe() {
     const distance = fsEndX - fsStartX;
-    if (Math.abs(distance) < 50) return;
+    const threshold = window.innerWidth * 0.15;
+    if (Math.abs(distance) < threshold) return;
 
     if (distance < 0 && currentIndex < totalMenus) currentIndex++;
     if (distance > 0 && currentIndex > 1) currentIndex--;
@@ -115,21 +156,19 @@ document.addEventListener("DOMContentLoaded", () => {
     updateImage();
   }
 
+
   // =====================
   // ZOOM HINT TIMING
   // =====================
   if (zoomHint) {
-    // desaparecer solo después de 3 segundos
     setTimeout(() => {
       zoomHint.classList.add("hide");
     }, 2000);
 
-    // si el usuario toca la imagen, se oculta de inmediato
     menuImage.addEventListener("click", () => {
       zoomHint.classList.add("hide");
     });
   }
-
 
   // =====================
   // INIT
