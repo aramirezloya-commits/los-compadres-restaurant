@@ -77,9 +77,10 @@ body {
   box-shadow: 0 18px 40px rgba(0,0,0,0.22);
   transition: opacity 0.2s ease;
 
-  touch-action: pan-y;
+  touch-action: auto;   /* ← ESTA ES LA CLAVE */
   user-select: none;
 }
+
 
 /* =====================
    NAV BUTTONS
