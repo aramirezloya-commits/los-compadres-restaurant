@@ -257,7 +257,7 @@ body {
 
 
 /* =====================
-   DIRECTIONS
+   DIRECTION
 ===================== */
 
 .directions {
@@ -277,7 +277,7 @@ body {
 
 /* CONTENIDO IZQUIERDA */
 .directions-content {
-  background: #fff9ec; /* crema más claro que el fondo */
+  background: #fff9ec; /* crema mas claro que el fondo */
   padding: 50px 45px;
   border-radius: 16px;
   color: var(--dark);
@@ -408,7 +408,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px;
+  padding: 80px;
   
 }
 
@@ -626,7 +626,7 @@ body.menu-open {
   overflow: hidden;
 }
 
-/* BOTÓN CERRAR */
+/* BOTON CERRAR */
 .menu-close {
   position: absolute;
   top: 26px;

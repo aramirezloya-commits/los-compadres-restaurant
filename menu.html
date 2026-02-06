@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Menu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/menu.css">
+  <title>Menu | Los Compadres Mexican Restaurant</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/menu.css" />
 </head>
 <body>
 
-  <!-- BACK BUTTON -->
-  <a href="index.html" class="back-fab">← Back</a>
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <header class="site-header">
+    <!-- 
+      COPIA AQUÍ EXACTAMENTE el header/nav
+      que ya usas en index.html
+    -->
+  </header>
 
-  <!-- MENU VIEWER -->
-  <main class="viewer">
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="menu-page">
 
-    <button class="nav prev" aria-label="Previous menu">
-      &#10094;
-    </button>
+    <!-- ===== SELECTOR DE MENÚ (SIMPLE Y PROFESIONAL) ===== -->
+    <section class="menu-tabs">
+      <button class="menu-tab active" data-menu="restaurant">
+        Restaurante
+      </button>
+      <button class="menu-tab" data-menu="bar">
+        Bar
+      </button>
+    </section>
 
-    <figure class="menu-photo">
-      <!-- SOLO UNA IMAGEN -->
+    <!-- ===== MENU RESTAURANTE ===== -->
+    <section class="menu-content active" id="menu-restaurant">
+      <section class="menu-gallery restaurant-menu">
+        <img src="assets/menu/menu-01.webp" alt="Menu page 1">
+        <img src="assets/menu/menu-02.webp" alt="Menu page 2">
+        <img src="assets/menu/menu-03.webp" alt="Menu page 3">
+        <img src="assets/menu/menu-04.webp" alt="Menu page 4">
+        <img src="assets/menu/menu-05.webp" alt="Menu page 5">
+        <img src="assets/menu/menu-06.webp" alt="Menu page 6">
+        <img src="assets/menu/menu-07.webp" alt="Menu page 7">
+        <img src="assets/menu/menu-08.webp" alt="Menu page 8">
+        <img src="assets/menu/menu-09.webp" alt="Menu page 9">
+        <img src="assets/menu/menu-10.webp" alt="Menu page 10">
+      </section>
+    </section>
+
+    <!-- ===== MENU BAR ===== -->
+
+    <section class="menu-content" id="menu-bar">
       <img
-        id="menuImage"
-        src="assets/menu/menu1.jpg"
-        alt="Restaurant Menu"
-        width="900"
-        height="1600"
+        src="assets/menu/menu-bar.jpeg"
+        alt="Bar menu"
+        class="menu-bar-image"
       >
+    </section>
 
-      <div class="zoom-hint" id="zoomHint">
-        Tap to zoom
-      </div>
-    </figure>
 
-    <div class="mobile-ui">
-      <div class="page-indicator" id="pageIndicator">
-        1 / 10
-      </div>
-
-      <div class="swipe-hint">
-        Swipe right for next page
-      </div>
-    </div>
-
-    <button class="nav next" aria-label="Next menu">
-      &#10095;
-    </button>
   </main>
 
-  <!-- FULLSCREEN VIEW -->
-  <div id="fullscreenView" class="fullscreen">
-    <button id="closeFullscreen" class="close-btn">✕</button>
-    <img id="fullscreenImage" alt="Menu fullscreen" />
-
-  <!-- JS -->
   <script src="js/menu.js"></script>
+
 </body>
 </html>

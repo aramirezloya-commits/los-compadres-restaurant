@@ -1,259 +1,118 @@
-/* =====================
-   RESET
-===================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* =========================
+   MENU PAGINA - BASE
+========================= */
+
+.menu-page {
+  background-color: #fdf7ed;
+  min-height: 100vh;
 }
 
-/* =====================
-   BASE
-===================== */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f4efe8;
-  color: #1f3f8b;
-  height: 100vh;
-  overflow: hidden;
+/* =========================
+   MENU TABS – ESTILO RESTAURANTE
+========================= */
 
-  background-image:
-    radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px);
-  background-size: 4px 4px;
-}
-
-/* =====================
-   BACK BUTTON
-===================== */
-.back-fab {
-  position: fixed;
-  top: 24px;
-  left: 24px;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #ffffff;
-  background: #1f3f8b;
-  padding: 8px 16px;
-  border-radius: 999px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  transition: all 0.2s ease;
-}
-
-.back-fab:hover {
-  background: #17336f;
-  transform: translateY(-1px);
-}
-
-/* =====================
-   VIEWER
-===================== */
-.viewer {
-  position: relative;
-  height: 100vh;
+.menu-tabs {
   display: flex;
-  align-items: center; /* desktop centrado */
   justify-content: center;
-  gap: 16px;
-  padding: 0 40px;
+  gap: 0.75rem;
+  padding: 1.35rem 0 2.5rem;
 }
 
-/* =====================
-   MENU IMAGE
-===================== */
-.menu-photo {
-  position: relative;
-  max-height: 90vh;
-  max-width: 80vw;
-  width: 100%;
+.menu-tab {
+  padding: 0.6rem 1.6rem;
+
+  border-radius: 999px;
+  border: 2px solid #f28c28;
+
+  background-color: #ffffff;
+  color: #3b2f2f;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  cursor: pointer;
 }
 
-.menu-photo img {
+.menu-tab.active {
+  background-color: #e07a18;
+  color: #ffffff;
+  border-color: #e07a18;
+}
+
+/* =========================
+   MENU CONTENIDO (CONTENEDOR)
+========================= */
+
+.menu-content {
+  display: none;
+
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.menu-content.active {
+  display: block;
+}
+
+/* =========================
+   MENU GALERIA (RESTAURANTE)
+========================= */
+
+.menu-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding: 1.25rem 0;
+}
+
+.menu-gallery img {
   width: 100%;
   height: auto;
-  display: block;
+
   border-radius: 14px;
-  background: #ffffff;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
-  transition: opacity 0.2s ease;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
 
-  touch-action: auto;   /* ← ESTA ES LA CLAVE */
-  user-select: none;
+  background-color: #ffffff;
 }
 
+/* =========================
+   FORZAR TAMAÑO MENU RESTAURANTE
+========================= */
 
-/* =====================
-   NAV BUTTONS
-===================== */
-.nav {
-  background: transparent;
-  border: none;
-  font-size: 2.5rem;
-  color: #1f3f8b;
-  cursor: pointer;
-  user-select: none;
-  padding: 10px;
-  opacity: 0.6;
-  transition: opacity 0.15s ease, transform 0.15s ease;
+.restaurant-menu img {
+  transform: scale(0.89);
+  transform-origin: top center;
 }
 
-.nav:hover {
-  opacity: 1;
-  transform: scale(1.1);
+/* =========================
+   MENU BAR IMAGEN
+========================= */
+
+.menu-bar-image {
+  width: 100%;
+  height: auto;
+
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+
+  display: block;
+
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+
+  background-color: #ffffff;
 }
 
-/* =====================
-   MOBILE VERSION (FIX REAL)
-===================== */
-@media (max-width: 768px) {
+/* =========================
+   DESKTOP
+========================= */
 
-  body {
-    overflow: hidden;
-  }
-
-  .back-fab {
-    top: 14px;
-    left: 14px;
-    padding: 6px 12px;
-    font-size: 0.75rem;
-  }
-
-  .viewer {
-    align-items: flex-start;  /* 👈 YA NO centro vertical */
-    padding-top: 6vh;        /* 👈 SUBE TODO PROPORCIONAL */
-    padding-left: 12px;
-    padding-right: 12px;
-    gap: 8px;
-  }
-
-  .menu-photo {
-    max-width: 100%;
-    max-height: 90vh;
-  }
-
-  .menu-photo img {
-    border-radius: 10px;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-  }
-
-  .nav {
-    font-size: 2.2rem;
-    padding: 6px;
+@media (min-width: 1024px) {
+  .menu-gallery {
+    gap: 2.5rem;
   }
 }
-
-@media (max-width: 768px) {
-
-  .mobile-ui {
-    position: fixed;
-    bottom: calc(8vh + env(safe-area-inset-bottom));
-    width: 100%;
-    pointer-events: none;
-    z-index: 30;
-  }
-
-  .page-indicator {
-    position: absolute;
-    bottom: 44px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: #2f4f88;
-    opacity: 0.85;
-    white-space: nowrap;
-  }
-
-  .swipe-hint {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, -25px);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #5f7fb0;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-    white-space: nowrap;
-  }
-
-  .swipe-hint.hidden {
-    opacity: 0;
-  }
-
-  .nav {
-    display: none;
-  }
-}
-
-.zoom-hint {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 1;
-  transition: opacity 0.4s ease;
-
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #fff;
-
-  background: rgba(0, 0, 0, 0.55);
-  padding: 6px 14px;
-  border-radius: 18px;
-
-  pointer-events: none;
-  z-index: 3;
-}
-
-.zoom-hint.hide {
-  opacity: 0;
-}
-
-.back-fab {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .back-fab {
-    display: block;
-  }
-}
-
-/* FULLSCREEN MENU */
-.fullscreen {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.fullscreen.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.fullscreen img {
-  max-width: 95%;
-  max-height: 95%;
-  object-fit: contain;
-}
-
-/* CLOSE BUTTON */
-.close-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-
